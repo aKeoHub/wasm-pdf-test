@@ -14,6 +14,9 @@ module.exports = {
                 {
                     from: 'text-example.json'
                 },
+                {
+                    from: 'pizza.jpg'
+                },
             ],
         }),
     ],
