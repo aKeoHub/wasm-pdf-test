@@ -12,5 +12,5 @@ import("./index.js").then(wasm => {
       wasm.createPDF(doc);
     });
 
-  //
+  // hello
 }).catch(e => console.error("Error importing `index.js`:", e));
