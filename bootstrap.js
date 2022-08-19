@@ -1,5 +1,5 @@
 import("./index.js").then(wasm => {
-  fetch('./text-example.json')
+  fetch('./myTemplate.json')
     .then(response => {
       return response.json();
     })

@@ -12,7 +12,7 @@ module.exports = {
                 from: 'index.html'
             },
                 {
-                    from: 'text-example.json'
+                    from: 'myTemplate.json'
                 },
                 {
                     from: 'pizza.jpg'

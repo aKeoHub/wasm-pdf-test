@@ -1,0 +1,28 @@
+{
+  "title": "Example Document",
+  "template": {
+    "top": 50,
+    "left": 50,
+    "right": 50,
+    "bottom": 50
+  },
+  "contents": [{
+    "obj_type": "Paragraph",
+    "params": {
+      "text": "Dynamic PDF Document",
+      "font_size": 18,
+      "leading": 24,
+      "font_name": "Helvetica-Bold"
+    }
+  },
+    {
+      "obj_type": "Paragraph",
+      "params": {
+        "text": "This PDF document was generated dynamically in your browser. No server resources were utilized.",
+        "font_name": "Helvetica-Bold",
+        "font_size": 12,
+        "align": "left"
+      }
+    }
+  ]
+}
