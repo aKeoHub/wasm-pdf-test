@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html>
 
 <head>
   <meta charset="utf-8">
@@ -7,29 +7,67 @@
 </head>
 
 <body>
-  <p>
-    One moment, creating PDF...
-  </p>
-  <script>
-    let pdfFileBlobURL = null;
-    let generatePDF = (data) => {
-      const blob = new Blob([data], {
-        type: 'application/pdf'
-      });
-      if (pdfFileBlobURL !== null) {
-        URL.revokeObjectURL(pdfFileBlobURL);
-      }
-      pdfFileBlobURL = URL.createObjectURL(blob);
-      // for debugging purposes, open another window
-      window.open(pdfFileBlobURL, "_blank");
-      window.location.href = pdfFileBlobURL;
-    }
+<p>
+  <span id="message">One moment, creating PDF...</span>
+  <!--    <a href="javascript:void(0)" download="lorem-ipsum.pdf" style="display: none" id="download-link">Download PDF</a>-->
+</p>
+<form id="parameters" onsubmit="addInfo()">
+  <label>
+    Paragraphs: <input type="text" id="inputs">
+  </label>
+  <button type="submit">Submit</button>
+  <a href="javascript:void(0)" download="lorem-ipsum.pdf" style="display: none" id="download-link">Download PDF</a>
+</form>
 
-    let jsonOut = (data) => {
-      console.log(JSON.stringify(data));
-    };
-  </script>
-  <script src="bootstrap.js"></script>
+
+
+
+<script>
+  async function addInfo() {
+    const info = document.getElementById("inputs");
+    console.log(info)
+    const object = { name: 'James Gordon' };
+    const response = await fetch('./text-example.json', {
+      method: 'POST',
+      body: JSON.stringify(object)
+    });
+    const responseText = await response.text();
+    console.log(responseText); // logs 'OK'
+  }
+  let pdfFileBlobURL = null;
+  let generatePDF = (data) => {
+    const blob = new Blob([data], {
+      type: 'application/pdf'
+    });
+    if (pdfFileBlobURL !== null) {
+      URL.revokeObjectURL(pdfFileBlobURL);
+    }
+    pdfFileBlobURL = URL.createObjectURL(blob);
+    // for debugging purposes, open another window
+    //window.open(pdfFileBlobURL, "_blank");
+
+    // This is your url
+    // let downloadLink = document.getElementById("download-link");
+    let downloadLink = document.getElementById("download-link");
+    downloadLink.href = pdfFileBlobURL;
+    downloadLink.style.display = 'block';
+    let message = document.getElementById("message");
+    message.style.display = 'none';
+
+    let form = document.getElementById("parameters");
+    //form.action = pdfFileBlobURL;
+    //form.onsubmit = pdfFileBlobURL;
+    //form.style.display = 'block';
+
+
+    // window.location.href = pdfFileBlobURL;
+  }
+
+  let jsonOut = (data) => {
+    console.log(JSON.stringify(data));
+  };
+</script>
+<script src="bootstrap.js"></script>
 </body>
 
 </html>
